@@ -18,21 +18,21 @@ function buyAutoNumber() {
     number -= autoNumberCost;
 
     autoNumberVersion++;
-    autoNumberCost = Math.ceil(autoNumberCost*1.55);
+    autoNumberCost = Math.ceil(autoNumberCost**1.17);
     numberPerSecond = numberPerSecond > 0 ? numberPerSecond * 1.5 : 1;
 
     clearInterval(autoNumberInterval);
 
     autoNumberInterval = setInterval(() => {
-        number++;
+        number += numberPerSecond/10;
         update();
-    }, 1000/numberPerSecond);
+    }, 20);
 
     update();
 }
 
 function update() {
-    document.getElementById("number").innerText = number;
+    document.getElementById("number").innerText = number.toFixed(0);
 
     document.getElementById("number-per-second").innerText = (numberPerSecond).toFixed(2);
 
